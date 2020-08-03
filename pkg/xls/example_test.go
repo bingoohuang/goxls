@@ -2,8 +2,9 @@ package xls_test
 
 import (
 	"fmt"
-	"github.com/bingoohuang/goxls/pkg/xls"
 	"testing"
+
+	"github.com/bingoohuang/goxls/pkg/xls"
 )
 
 func TestExampleOpen(t *testing.T) {
@@ -27,8 +28,8 @@ func TestExampleOpen_GetSheet(t *testing.T) {
 
 	for i := 0; i <= int(sheet.MaxRow); i++ {
 		row := sheet.Row(i)
-		fmt.Println("第", (i + 1), "行一列数据", row.Col(0))
-		fmt.Println("第", (i + 1), "行二列数据", row.Col(1))
+		fmt.Println("第", i+1, "行一列数据", row.Col(0))
+		fmt.Println("第", i+1, "行二列数据", row.Col(1))
 	}
 }
 

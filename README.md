@@ -22,8 +22,8 @@ func main() {
     
 	for i := 0; i <= int(sheet.MaxRow); i++ {
 		row := sheet.Row(i)
-		fmt.Println("row", (i + 1), "col 1", row.Col(0))
-		fmt.Println("row", (i + 1), "col 2", row.Col(1))
+		fmt.Println("row", i + 1, "col 1", row.Col(0))
+		fmt.Println("row", i + 1, "col 2", row.Col(1))
 	}
 }
 ```

@@ -53,11 +53,17 @@ func CompareXlsXlsx(xlsfilepathname string, xlsxfilepathname string) string {
 		return fmt.Sprintf("Cant open xlsx file: %s", err)
 	}
 
+	fmt.Printf("numOfSheets, xlsx/xlsx MaxRow %d:%d\n", len(xlsxFile.Sheets), xlsFile.NumSheets())
+
 	for sheetIndex, xlsxSheet := range xlsxFile.Sheets {
 		xlsSheet := xlsFile.GetSheet(sheetIndex)
 		if xlsSheet == nil {
 			return "Cant get xls sheet"
 		}
+
+		fmt.Printf("sheetIndex %d %s:%s, xlsx/xlsx MaxRow %d:%d\n",
+			sheetIndex, xlsSheet.Name, xlsSheet.Name,
+			xlsxSheet.MaxRow, xlsSheet.MaxRow+1)
 
 		for rowIndex := 0; rowIndex < xlsxSheet.MaxRow; rowIndex++ {
 			xlsxRow, _ := xlsxSheet.Row(rowIndex)
@@ -73,6 +79,7 @@ func CompareXlsXlsx(xlsfilepathname string, xlsxfilepathname string) string {
 				}
 
 				xlsText := xlsRow.Col(cellIndex)
+
 				if xlsText == xlsxText {
 					continue
 				}
