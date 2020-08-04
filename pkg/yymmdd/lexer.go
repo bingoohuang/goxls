@@ -87,7 +87,7 @@ func (l *lexer) emit(t string) {
 // emit passes an item back to the client.
 func (l *lexer) emitRaw() {
 	if l.pos-l.start > 1 {
-		l.tokens = append(l.tokens, LexToken{T_RAW_MARK, l.input[l.start : l.pos-1], strconv.Itoa(l.lineno)})
+		l.tokens = append(l.tokens, LexToken{TRawMark, l.input[l.start : l.pos-1], strconv.Itoa(l.lineno)})
 		l.start = l.pos - 1
 	}
 }
@@ -101,18 +101,18 @@ func initLexerState(l *lexer) lexerState {
 		if r == "y" {
 			l.emitRaw()
 			l.acceptRun("y")
-			l.emit(T_YEAR_MARK)
+			l.emit(TYearMark)
 		} else if r == "m" {
 			l.emitRaw()
 			l.acceptRun("m")
-			l.emit(T_MONTH_MARK)
+			l.emit(TMonthMark)
 		} else if r == "d" {
 			l.emitRaw()
 			l.acceptRun("d")
-			l.emit(T_DAY_MARK)
+			l.emit(TDayMark)
 		}
 	}
 
-	l.emit(T_EOF)
+	l.emit(TEof)
 	return nil
 }

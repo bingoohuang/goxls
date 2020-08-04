@@ -46,16 +46,16 @@ type parser struct {
 // the starting state for parsing
 func initialParserState(p *parser, f *Formatter) parserState {
 	var t *LexToken
-	for t = p.next(); t[0] != T_EOF; t = p.next() {
+	for t = p.next(); t[0] != TEof; t = p.next() {
 		var item ItemFormatter
 		switch t[0] {
-		case T_YEAR_MARK:
+		case TYearMark:
 			item = new(YearFormatter)
-		case T_MONTH_MARK:
+		case TMonthMark:
 			item = new(MonthFormatter)
-		case T_DAY_MARK:
+		case TDayMark:
 			item = new(DayFormatter)
-		case T_RAW_MARK:
+		case TRawMark:
 			item = new(basicFormatter)
 		}
 		item.setOriginal(t[1])
