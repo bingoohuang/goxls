@@ -10,6 +10,10 @@ xls package use to parse the 97-2004 microsoft xls file(".xls" suffix, NOT ".xls
 
 code forked from [extrame/xls](https://github.com/extrame/xls) and fix the test. 
 
+## demo usage
+
+Watch your step: **`i <= int(sheet.MaxRow)`**.
+
 ```go
 import (
 	"fmt"
@@ -28,7 +32,7 @@ func main() {
 }
 ```
 
-goxls command line tool usage:
+## cmd usage
 
 `go get github.com/bingoohuang/goxls/cmd/goxls`
 
@@ -52,3 +56,6 @@ sheet index: 0, name: sheet1, total rows: 16
 there is no difference between two files
 ```
 
+## resources
+
+1. [github topics xls](https://github.com/topics/xls?l=go)
