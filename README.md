@@ -27,3 +27,28 @@ func main() {
 	}
 }
 ```
+
+goxls command line tool usage:
+
+`go get github.com/bingoohuang/goxls/cmd/goxls`
+
+```bash
+🕙[2020-08-04 10:29:18.609] ❯ goxls                                                                                 
+  -file string
+        read excel file(.xls suffix)
+  -xlsx string
+        comparing excel file(.xlsx suffix)
+🕙[2020-08-04 10:28:31.748] ❯ goxls -file example.xls     
+NumSheets: 1
+Sheets: 0, Name: Table, TotalRows: 12
+Row 1
+Col 1: "Code"
+Col 2: "Name"
+Col 3: "Description"
+Col 4: ""
+🕙[2020-08-04 10:28:45.722] ❯ goxls -file a.xls -xlsx a.xlsx
+numOfSheets: 1
+sheet index: 0, name: sheet1, total rows: 16
+there is no difference between two files
+```
+

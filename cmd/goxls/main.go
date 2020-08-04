@@ -14,7 +14,7 @@ import (
 
 func main() {
 	xlsFile, xlsxFile := "", ""
-	flag.StringVar(&xlsFile, "file", "", "excel file(.xls suffix)")
+	flag.StringVar(&xlsFile, "file", "", "read excel file(.xls suffix)")
 	flag.StringVar(&xlsxFile, "xlsx", "", "comparing excel file(.xlsx suffix)")
 
 	flag.Parse()
