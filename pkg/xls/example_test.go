@@ -33,6 +33,17 @@ func TestExampleOpen_GetSheet(t *testing.T) {
 	}
 }
 
+func TestExampleOpen_BigSheet(t *testing.T) {
+	xlFile, _ := xls.Open("testdata/wangpengyuan_certTest1.xls", "utf-8")
+	sheet := xlFile.GetSheet(0)
+
+	for i := 0; i <= int(sheet.MaxRow); i++ {
+		row := sheet.Row(i)
+		fmt.Println("第", i+1, "行一列数据", row.Col(0))
+		fmt.Println("第", i+1, "行二列数据", row.Col(1))
+	}
+}
+
 func TestGetSheet(t *testing.T) {
 	if xlFile, err := xls.Open("testdata/example.xls", "utf-8"); err == nil {
 		if sheet1 := xlFile.GetSheet(0); sheet1 != nil {

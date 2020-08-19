@@ -82,30 +82,34 @@ func (o *Ole) readMSAT() error {
 		}
 	}
 
-	for sid := o.header.Difstart; sid != ENDOFCHAIN; {
-		if sector, err := o.sector_read(sid); err == nil {
-			sids := sector.MsatValues(o.Lsector)
-
-			for _, sid := range sids {
-				if sector, err := o.sector_read(sid); err == nil {
-					sids := sector.AllValues(o.Lsector)
-
-					o.SecID = append(o.SecID, sids...)
-				} else {
-					return err
-				}
-			}
-
-			sid = sector.NextSid(o.Lsector)
-		} else {
+	for sid := o.header.Difstart; sid < ENDOFCHAIN; {
+		sector, err := o.sector_read(sid)
+		if err != nil {
 			return err
 		}
+
+		sids := sector.MsatValues(o.Lsector)
+
+		for i := 0; i < len(sids); i++ {
+			if sids[i] == ENDOFCHAIN {
+				break
+			}
+			sector, err := o.sector_read(sids[i])
+			if err != nil {
+				return err
+			}
+
+			sectorSids := sector.AllValues(o.Lsector)
+			o.SecID = append(o.SecID, sectorSids...)
+		}
+
+		sid = sector.NextSid(o.Lsector)
 	}
 
 	for i := uint32(0); i < o.header.Csfat; i++ {
 		sid := o.header.Sfatstart
 
-		if sid != ENDOFCHAIN {
+		if sid < ENDOFCHAIN {
 			if sector, err := o.sector_read(sid); err == nil {
 				sids := sector.MsatValues(o.Lsector)
 
